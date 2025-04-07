@@ -9,6 +9,10 @@ body
 	align-items: center;
 	min-height: 100vh;
 	color: #333;
+	background-image: url("loginbackground.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 h1
