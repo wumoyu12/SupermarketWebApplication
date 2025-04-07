@@ -6,50 +6,53 @@
 
 	<body>
 		<h1>Supermarket</h1>
-		<form action="/info" method="post">
+		<form action="/login" method="post">
 			<div id="divlogin">
 				<label>Log In to Supermarket</label>
 				<table id="tblogin">
 					<tr>
 						<td><label id="lblusername">Username:</label>
-						<td><input id="txtusername" name="txtusername"></input>
+						<td><input id="txtloginusername" name="txtloginusername" autofocus></input>
 					</tr>
 					
 					<tr>
 						<td><label id="lblpassword">Password:</label>
-						<td><input id="txtpassword" name="txtpassword" ></input>
+						<td><input id="txtloginpassword" name="txtloginpassword" ></input>
 					</tr>
 					
 					<tr>
 						<td><button id="btnsubmit">Submit</button>
 					</tr>
 				</table>
-				<label id="lblsigninorup">Create a New Account</label>
+				<label id="lblsigninorup">Don't have an account?<a href="#" id="showsignup">Sign Up</a></label>
 			</div>
+		</form>
+
+		<form action="/signup" method="post" > <!-- //style="display:none;" -->
 			
 			<div id="divsignup">
 				<label>Sign Up to Supermarket</label>
 				<table id="tbsignup">
 					<tr>
 						<td><label id="lblusername">Username:</label>
-						<td><input id="txtusername" name="txtusername"></input>
+						<td><input id="txtsignupusername" name="txtsignupusername"></input>
 					</tr>
 					
 					<tr>
 						<td><label id="lblpassword">Password:</label>
-						<td><input id="txtpassword" name="txtpassword" ></input>
+						<td><input id="txtsignuppassword" name="txtpassword" ></input>
 					</tr>
 					
 					<tr>
 						<td><label id="lblrpassword">Repeat Password:</label>
-						<td><input id="txtrpassword" name="txtrpassword" ></input>
+						<td><input id="txtsignuprpassword" name="txtsignuprpassword" ></input>
 					</tr>
 					
 					<tr>
 						<td><button id="btnsubmit">Submit</button>
 					</tr>
 				</table>
-				<label id="lblsigninorup">Log In to Your Account</label>
+				<label id="lblsigninorup">Already have an account? <a href="#" id="showlogin">Log In</a></label>
 			</div>
 			
 						
