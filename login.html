@@ -6,8 +6,8 @@
 
 	<body>
 		<h1>Supermarket</h1>
-		<form action="/login" method="post">
-			<div id="divlogin">
+		<div id="divlogin">
+			<form action="/login" method="post">
 				<label>Log In to Supermarket</label>
 				<table id="tblogin">
 					<tr>
@@ -25,12 +25,11 @@
 					</tr>
 				</table>
 				<p id="psigninorup">Don't have an account?<a href="#" id="showsignup">Sign Up</a></p>
-			</div>
-		</form>
-
-		<form action="/signup" method="post" > <!-- //style="display:none;" -->
-			
-			<div id="divsignup">
+			</form>
+		</div>
+		
+		<div id="divsignup" style="display:none;">
+			<form action="/signup" method="post" >
 				<label>Sign Up to Supermarket</label>
 				<table id="tbsignup">
 					<tr>
@@ -53,9 +52,7 @@
 					</tr>
 				</table>
 				<p id="psigninorup">Already have an account? <a href="#" id="showlogin">Log In</a></p>
-			</div>
-			
-						
-		</form>
+			</form>
+		</div>
 	</body>
 </html>
