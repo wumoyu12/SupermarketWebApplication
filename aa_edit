@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supermarket - Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Supermarket</h1>
+        
+        <!-- Login Form (default visible) -->
+        <form id="loginForm" action="/login" method="post">
+            <div class="form-container">
+                <h2>Log In to Supermarket</h2>
+                <div class="form-group">
+                    <label for="txtloginusername">Username:</label>
+                    <input type="text" id="txtloginusername" name="txtloginusername" autofocus required>
+                </div>
+                <div class="form-group">
+                    <label for="txtloginpassword">Password:</label>
+                    <input type="password" id="txtloginpassword" name="txtloginpassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="toggle-form">Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+            </div>
+        </form>
 
+        <!-- Signup Form (hidden by default) -->
+        <form id="signupForm" action="/signup" method="post" style="display: none;">
+            <div class="form-container">
+                <h2>Sign Up to Supermarket</h2>
+                <div class="form-group">
+                    <label for="txtsignupusername">Username:</label>
+                    <input type="text" id="txtsignupusername" name="txtsignupusername" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtsignuppassword">Password:</label>
+                    <input type="password" id="txtsignuppassword" name="txtpassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtsignuprpassword">Repeat Password:</label>
+                    <input type="password" id="txtsignuprpassword" name="txtsignuprpassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+                <p class="toggle-form">Already have an account? <a href="#" id="showLogin">Log In</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Toggle between login and signup forms
+        document.getElementById('showSignup').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
