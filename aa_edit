@@ -1,3 +1,4 @@
+login.html
 <html>
 	<head>
 		<title>Log In</title>
@@ -39,7 +40,7 @@
 					
 					<tr>
 						<td><label id="lblpassword">Password:</label>
-						<td><input id="txtsignuppassword" name="txtpassword" type="password"></input>
+						<td><input id="txtsignuppassword" name="txtpassword" ></input>
 					</tr>
 					
 					<tr>
@@ -57,8 +58,99 @@
 	</body>
 </html>
 
+login.css
+body
+{
+	font-family: Arial;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	color: #333;
+	background-image: url("loginbackground.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1
+{
+	color: #2c3e50;
+	margin: 30px;
+	font-size: 2.5em;
+}
 
 
+form 
+{
+	background-color: white;
+	border-radius: 8px;
+	padding: 30px;
+	width: 350px;
+	margin-bottom: 20px;
+}
 
 
-type "password"
+table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+
+td
+{
+	padding: 8px 0;
+}
+
+label
+{
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+
+input
+{
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 16px;
+	box-sizing: border-box;
+	border-color: #3498db;
+	outline: none;	
+}
+
+button
+{
+	background-color: #3498db;
+	width: 100%;
+	padding: 12px;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+
+p
+{
+	text-align: center;
+	margin-top: 20px;
+	color: #7f8c8d;
+}
+
+
+adminmainpage.html
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Supermarket</title>
+	</head>
+	
+	<body>
+		<label id="lblwelmsg">Hello {{username}},</label>
+	</body>
+</html>
