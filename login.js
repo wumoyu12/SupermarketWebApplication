@@ -1,29 +1,43 @@
-window.addEventListener("load", InitControls);
 window.addEventListener("load", addListeners);
 
-function InitControls() {
-    document.getElementById("txtloginusername").value = "";
-    document.getElementById("txtloginpassword").value = "";
-    document.getElementById("txtsignupusername").value = "";
-    document.getElementById("txtsignuppassword").value = "";
-    document.getElementById("txtsignuprpassword").value = "";
-    document.getElementById("txtloginusername").focus();
-}
-
-function addListeners() {
+where = "login";
+function addListeners()
+{
+	document.getElementById("btnsubmit").addEventListener("click", CheckInfo);
     document.getElementById("showsignup").addEventListener("click", showSignUp);
     document.getElementById("showlogin").addEventListener("click", showLogIn);
 }
 
-function showSignUp(event) {
-    event.preventDefault();
+function CheckInfo()
+{
+	if (where=="login")
+	{
+		CheckLogin()
+	}
+	
+}
+
+function CheckLogin()
+{
+	loginusername = document.getElementById("txtloginusername").value;
+	loginpassword = document.getElementById("txtloginpassword").value;
+	if (loginusername == "")
+	{
+		alert("Can't leave any blank")
+	}
+}
+
+function showSignUp() 
+{
+	where = "signup";
     document.getElementById("divlogin").style.display = "none";
     document.getElementById("divsignup").style.display = "block";
     document.getElementById("txtsignupusername").focus();
 }
 
-function showLogIn(event) {
-    event.preventDefault();
+function showLogIn() 
+{
+	where = "login";
     document.getElementById("divsignup").style.display = "none";
     document.getElementById("divlogin").style.display = "block";
     document.getElementById("txtloginusername").focus();
