@@ -1,6 +1,22 @@
+window.addEventListener("load", InitControls);
 window.addEventListener("load", addListeners);
 
+var where ;
 where = "login";
+
+function InitControls()
+{
+	document.getElementById("txtloginusername").textContent="";
+	document.getElementById("txtloginpassword").textContent="";
+	
+	document.getElementById("txtsignupusername").textContent="";
+	document.getElementById("txtsignuppassword").textContent="";
+	document.getElementById("txtsignuprpassword").textContent="";
+	
+	document.getElementById("txtloginusername").focus();
+	document.getElementById("txtsignupusername").focus();
+}
+
 function addListeners()
 {
 	document.getElementById("btnsubmit").addEventListener("click", CheckInfo);
@@ -12,19 +28,35 @@ function CheckInfo()
 {
 	if (where=="login")
 	{
-		CheckLogin()
+		CheckLogin();
+	}
+	else
+	{
+		SigninCheck();
 	}
 	
 }
 
 function CheckLogin()
 {
-	loginusername = document.getElementById("txtloginusername").value;
+	var loginusername, loginpassword;
+	username = document.getElementById("txtloginusername").value;
 	loginpassword = document.getElementById("txtloginpassword").value;
-	if (loginusername == "")
+	
+	if (username == "" || loginpassword == "")
 	{
-		alert("Can't leave any blank")
+		alert("Information is missing!");
+		document.getElementById("txtloginusername").value;
+		document.getElementById("txtloginusername").focus();
 	}
+}
+
+function SigninCheck()
+{
+	var username, fpassword, rpassword;
+	username = document.getElementById("txtsignupusername").value;
+	fpassword = document.getElementById("txtsignuppassword").value;
+	rpassword = document.getElementById("txtsignuprpassword").value;
 }
 
 function showSignUp() 
