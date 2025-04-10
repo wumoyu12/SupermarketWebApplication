@@ -142,15 +142,123 @@ p
 	color: #7f8c8d;
 }
 
-
-adminmainpage.html
-<!DOCTYPE html>
+html,css create the javascript and python flask
+use below as tutorials
 <html>
 	<head>
-		<title>Supermarket</title>
+		<title>Collect Information</title>
+		<link rel="stylesheet" href="\static\AskInfo.css">
+		<script src="\static\GetInfo.js"></script>
 	</head>
-	
+
 	<body>
-		<label id="lblwelmsg">Hello {{username}},</label>
+		<h1>Input the following information</h1>
+		<form action="/info" method="post">
+			<div id="login">
+				<table id="tbllogin">
+					<tr>
+						<td><label id="lblusername">Username:</label>
+						<td><input id="txtusername" name="txtusername" ></input>
+					</tr>
+					<tr>
+						<td><label id="lblpassword">Password:</label>
+						<td><input id="txtpassword" name="txtpassword" ></input>
+					</tr>
+					<tr>
+						<td><button id="btnsubmit">Submit</button>
+					</tr>
+				</table>
+			<div>				
+		</form>
 	</body>
 </html>
+window.addEventListener("load", InitControls);
+window.addEventListener("load", addListener);
+
+function InitControls()
+{
+	document.getElementById("txtusername").textContent="";
+	document.getElementById("txtpassword").textContent="";
+	document.getElementById("txtusername").focus();
+}
+
+function addListener()
+{
+	document.getElementById("btnsubmit").addEventListener("click", CheckInfo);
+}
+
+function CheckInfo()
+{
+	var username, passwd;
+	username=document.getElementById("txtusername").value
+	passwd=document.getElementById("txtpassword").value
+
+	if (username=="" || passwd=="")
+	{
+		alert("Information is missing!");
+		InitControls();
+	}
+}
+from flask import Flask,render_template, request, redirect
+import os.path
+from os import path
+
+global whichfilename;
+whichfilename = "pdinfo.doc";
+app = Flask(__name__)
+
+@app.route("/")
+def main():
+    return render_template("GetInformation.html");
+
+@app.route("/info",methods=["POST"])
+def GetInfo():
+    global username, userpasswd;
+
+    username = request.form.get("txtusername");
+    userpasswd = request.form.get("txtpassword");
+
+    if(username == "" or userpasswd == ""):
+        return render_template("GetInformation.html");
+    else:
+        CreateCheckFile();
+        RetrieveInfo();
+        return render_template("output.html", username = fileusername, password = fileuserpwd);
+
+def CreateCheckFile():
+    fileDir = os.path.dirname(os.path.realpath("__file__"));
+    fileexist = bool(path.exists(whichfilename));
+
+    if (fileexist == False):
+        status = "new";
+    else:
+        status = "edit";
+
+    WriteToFile(status);
+
+def WriteToFile(whichstatus):
+    if (whichstatus == "new"):
+        logacctfile = open(whichfilename,"x");
+        logacctfile.close();
+        logacctfile = open(whichfilename,"w");
+    else:
+        logacctfile = open(whichfilename,"a");
+
+    logacctfile.write(str(username) + ", " + str(userpasswd));
+    logacctfile.close();
+
+def RetrieveInfo():
+    global fileusername, fileuserpwd;
+    
+    logacctfile = open(whichfilename,"r");
+    infologin = logacctfile.read().split(",");
+    logacctfile.close();
+
+    fileusername = infologin[0].strip();
+    fileuserpwd = infologin[1].strip();
+    
+if __name__ == "__main__":
+    app.run();
+
+
+No advance coding
