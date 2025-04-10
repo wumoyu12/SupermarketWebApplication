@@ -1,81 +1,59 @@
-body
-{
-	font-family: Arial;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: #333;
-	background-image: url("loginbackground.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
+<html>
+	<head>
+		<title>Log In</title>
+		<link rel="stylesheet" href="\static\login.css">
+		<script src="\static\login.js"></script>
+	</head>
 
-h1
-{
-	color: #2c3e50;
-	margin: 30px;
-	font-size: 2.5em;
-}
-
-
-form 
-{
-	background-color: white;
-	border-radius: 8px;
-	padding: 30px;
-	width: 350px;
-	margin-bottom: 20px;
-}
-
-
-table
-{
-	width: 100%;
-	border-collapse: collapse;
-}
-
-
-td
-{
-	padding: 8px 0;
-}
-
-label
-{
-	font-weight: bold;
-	display: block;
-	margin-bottom: 5px;
-}
-
-input
-{
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	font-size: 16px;
-	box-sizing: border-box;
-	border-color: #3498db;
-	outline: none;	
-}
-
-button
-{
-	background-color: #3498db;
-	width: 100%;
-	padding: 12px;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	font-size: 16px;
-	margin-top: 10px;
-}
-
-
-p
-{
-	text-align: center;
-	margin-top: 20px;
-	color: #7f8c8d;
-}
+	<body>
+		<h1>Supermarket</h1>
+		<div id="divlogin">
+			<form action="/login" method="post">
+				<label>Log In to Supermarket</label>
+				<table id="tblogin">
+					<tr>
+						<td><label id="lblusername">Username:</label>
+						<td><input id="txtloginusername" name="txtloginusername" autofocus></input>
+					</tr>
+					
+					<tr>
+						<td><label id="lblpassword">Password:</label>
+						<td><input id="txtloginpassword" name="txtloginpassword" ></input>
+					</tr>
+					
+					<tr>
+						<td><button id="btnsubmit">Submit</button>
+					</tr>
+				</table>
+				<p id="psigninorup">Don't have an account?<a href="#" id="showsignup">Sign Up</a></p>
+			</form>
+		</div>
+		
+		<div id="divsignup" style="display:none;">
+			<form action="/signup" method="post" >
+				<label>Sign Up to Supermarket</label>
+				<table id="tbsignup">
+					<tr>
+						<td><label id="lblusername">Username:</label>
+						<td><input id="txtsignupusername" name="txtsignupusername"></input>
+					</tr>
+					
+					<tr>
+						<td><label id="lblpassword">Password:</label>
+						<td><input id="txtsignuppassword" name="txtsignuppassword"></input>
+					</tr>
+					
+					<tr>
+						<td><label id="lblrpassword">Repeat Password:</label>
+						<td><input id="txtsignuprpassword" name="txtsignuprpassword" ></input>
+					</tr>
+					
+					<tr>
+						<td><button id="btnsubmit">Submit</button>
+					</tr>
+				</table>
+				<p id="psigninorup">Already have an account? <a href="#" id="showlogin">Log In</a></p>
+			</form>
+		</div>
+	</body>
+</html>
