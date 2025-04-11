@@ -1,10 +1,11 @@
 window.addEventListener("load", InitControls);
 window.addEventListener("load", addListeners);
 
-var where = "login";
+var where ;
+where = "login";
 
-function InitControls() {
-    // Clear all input fields on page load
+function InitControls()
+{
     document.getElementById("txtloginusername").value = "";
     document.getElementById("txtloginpassword").value = "";
     
@@ -13,83 +14,98 @@ function InitControls() {
     document.getElementById("txtsignuprpassword").value = "";
 }
 
-function addListeners() {
-    document.getElementById("btnsubmit").addEventListener("click", CheckInfo);
+function addListeners()
+{
+	document.getElementById("btnsubmit").addEventListener("click", CheckInfo);
     document.getElementById("showsignup").addEventListener("click", showSignUp);
     document.getElementById("showlogin").addEventListener("click", showLogIn);
 }
 
-function CheckInfo() {
-    if (where === "login") {
-        CheckLogin();
-    } else {
-        SigninCheck();
-    }
+function CheckInfo()
+{
+	if (where=="login")
+	{
+		CheckLogin();
+	}
+	else
+	{
+		SigninCheck();
+	}
+	
 }
 
-function CheckLogin() {
-    var username = document.getElementById("txtloginusername").value;
-    var password = document.getElementById("txtloginpassword").value;
-    
-    if (username === "") {
-        alert("Username is required!");
-        document.getElementById("txtloginusername").focus();
-        return false;
-    }
-    
-    if (password === "") {
-        alert("Password is required!");
-        document.getElementById("txtloginpassword").focus();
-        return false;
-    }
-    
-    // If validation passes, allow form submission
-    return true;
+function CheckLogin()
+{
+	var username, loginpassword;
+	username = document.getElementById("txtloginusername").value;
+	loginpassword = document.getElementById("txtloginpassword").value;
+	
+	if (username == "")
+	{
+		alert("Username is required!");
+		document.getElementById("txtloginusername").focus();
+		return false;
+	}
+	if (loginpassword == "")
+	{
+		alert("Password is required!");
+		document.getElementById("txtloginpassword").focus();
+		return false;
+	}
+	return true;
 }
 
-function SigninCheck() {
-    var username = document.getElementById("txtsignupusername").value;
-    var fpassword = document.getElementById("txtsignuppassword").value;
-    var rpassword = document.getElementById("txtsignuprpassword").value;
-    
-    if (username === "") {
+function SigninCheck()
+{
+	var username, fpassword, rpassword, plength;
+	username = document.getElementById("txtsignupusername").value;
+	fpassword = document.getElementById("txtsignuppassword").value;
+	rpassword = document.getElementById("txtsignuprpassword").value;
+	plength = fpassword.length;
+	
+	if (username == "")
+	{
         alert("Username is required!");
         document.getElementById("txtsignupusername").focus();
         return false;
     }
     
-    if (fpassword === "") {
+    if (fpassword == "")
+	{
         alert("Password is required!");
         document.getElementById("txtsignuppassword").focus();
         return false;
     }
-    
-    if (fpassword !== rpassword) {
-        alert("Passwords do not match!");
-        document.getElementById("txtsignuprpassword").focus();
-        return false;
-    }
-    
-    if (fpassword.length < 6) {
+	
+	if (plength < 6)
+	{
         alert("Password must be at least 6 characters long!");
         document.getElementById("txtsignuppassword").focus();
         return false;
     }
     
-    // If validation passes, allow form submission
-    return true;
+    if (fpassword != rpassword)
+	{
+        alert("Passwords do not match!");
+        document.getElementById("txtsignuprpassword").focus();
+        return false;
+    }
+
+	return true;
 }
 
-function showSignUp() {
-    where = "signup";
+function showSignUp() 
+{
+	where = "signup";
+	document.getElementById("txtsignupusername").focus();
     document.getElementById("divlogin").style.display = "none";
     document.getElementById("divsignup").style.display = "block";
-    document.getElementById("txtsignupusername").focus();
 }
 
-function showLogIn() {
-    where = "login";
+function showLogIn() 
+{
+	where = "login";
+	document.getElementById("txtloginusername").focus();
     document.getElementById("divsignup").style.display = "none";
     document.getElementById("divlogin").style.display = "block";
-    document.getElementById("txtloginusername").focus();
 }
