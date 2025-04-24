@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #45a049; }
+        .error { color: red; margin-bottom: 15px; }
+        .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .section h2 { margin-top: 0; }
+        .back-btn { display: block; width: 200px; margin: 20px auto; padding: 10px; background-color: #ccc; color: #333; text-align: center; text-decoration: none; border-radius: 4px; }
+        .back-btn:hover { background-color: #bbb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST">
+            {% if not has_info %}
+            <div class="section">
+                <h2>Basic Information</h2>
+                <p>Please provide your basic information. This will be saved for future purchases.</p>
+                
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <button type="submit">Save Information and Continue</button>
+            </div>
+            {% else %}
+            <div class="section">
+                <h2>Shipping Information</h2>
+                
+                <div class="form-group">
+                    <label for="address">Shipping Address:</label>
+                    <select id="address" name="address" required>
+                        <option value="">Select your state</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <!-- Add all 50 states here -->
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Payment Information</h2>
+                
+                <div class="form-group">
+                    <label for="card">Card Number:</label>
+                    <input type="text" id="card" name="card" required>
+                </div>
+                <div class="form-group">
+                    <label for="exp">Expiration Date (MM/YY):</label>
+                    <input type="text" id="exp" name="exp" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="security">Security Code:</label>
+                    <input type="text" id="security" name="security" required>
+                </div>
+                
+                <button type="submit">Complete Purchase</button>
+            </div>
+            {% endif %}
+        </form>
+        
+        <a href="/cart" class="back-btn">Back to Cart</a>
+    </div>
+</body>
+</html>
