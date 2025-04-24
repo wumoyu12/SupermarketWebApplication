@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supermarket Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #45a049; }
+        .error { color: red; margin-bottom: 15px; }
+        .success { color: green; margin-bottom: 15px; }
+        .toggle-form { text-align: center; margin-top: 15px; }
+        .toggle-form a { color: #4CAF50; text-decoration: none; }
+        #signupform { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+    <script>
+        function showSignup() {
+            document.getElementById('loginform').style.display = 'none';
+            document.getElementById('signupform').style.display = 'block';
+            document.getElementById('toggleLogin').style.display = 'block';
+            document.getElementById('toggleSignup').style.display = 'none';
+        }
+        
+        function showLogin() {
+            document.getElementById('loginform').style.display = 'block';
+            document.getElementById('signupform').style.display = 'none';
+            document.getElementById('toggleLogin').style.display = 'none';
+            document.getElementById('toggleSignup').style.display = 'block';
+        }
+        
+        window.onload = function() {
+            {% if show_signup == 'true' %}
+                showSignup();
+            {% endif %}
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Supermarket Login</h1>
+        
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        {% if success %}
+        <div class="success">{{ success }}</div>
+        {% endif %}
+        
+        <div id="loginform">
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="txtusername">Username:</label>
+                    <input type="text" id="txtusername" name="txtusername" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtpassword">Password:</label>
+                    <input type="password" id="txtpassword" name="txtpassword" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="toggle-form">
+                <a href="#" id="toggleSignup" onclick="showSignup()">Don't have an account? Sign up</a>
+            </div>
+        </div>
+        
+        <div id="signupform">
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="txtsignupusername">Username:</label>
+                    <input type="text" id="txtsignupusername" name="txtsignupusername" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtsignuppassword">Password:</label>
+                    <input type="password" id="txtsignuppassword" name="txtsignuppassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="txtsignuprpassword">Repeat Password:</label>
+                    <input type="password" id="txtsignuprpassword" name="txtsignuprpassword" required>
+                </div>
+                {% if signuperror %}
+                <div class="error">{{ signuperror }}</div>
+                {% endif %}
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="toggle-form">
+                <a href="#" id="toggleLogin" onclick="showLogin()">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
