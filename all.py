@@ -135,6 +135,288 @@ def userfruit():
     
     return render_template("emptydept.html", dept="Fruit")
 
+@app.route("/poultry", methods=["GET", "POST"])
+def poultry():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("poultry.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("poultry.html", error="Please select a unit")
+        else:
+            pyfile = open("poultry.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("poultry.html", success="Product added successfully")
+    
+    return render_template("poultry.html")
+
+@app.route("/userpoultry")
+def userpoultry():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("poultry.txt"):
+        products = []
+        pyfile = open("poultry.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("userpoultry.html", products=products)
+    
+    return render_template("emptydept.html", dept="Poultry")
+
+@app.route("/meat", methods=["GET", "POST"])
+def meat():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("meat.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("meat.html", error="Please select a unit")
+        else:
+            pyfile = open("meat.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("meat.html", success="Product added successfully")
+    
+    return render_template("meat.html")
+
+@app.route("/usermeat")
+def usermeat():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("meat.txt"):
+        products = []
+        pyfile = open("meat.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("usermeat.html", products=products)
+    
+    return render_template("emptydept.html", dept="meat")
+@app.route("/beverage", methods=["GET", "POST"])
+def beverage():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("beverage.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("beverage.html", error="Please select a unit")
+        else:
+            pyfile = open("beverage.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("beverage.html", success="Product added successfully")
+    
+    return render_template("beverage.html")
+
+@app.route("/userbeverage")
+def userbeverage():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("beverage.txt"):
+        products = []
+        pyfile = open("beverage.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("userbeverage.html", products=products)
+    
+    return render_template("emptydept.html", dept="beverage")
+
+@app.route("/frozen", methods=["GET", "POST"])
+def frozen():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("frozen.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("frozen.html", error="Please select a unit")
+        else:
+            pyfile = open("frozen.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("frozen.html", success="Product added successfully")
+    
+    return render_template("frozen.html")
+
+@app.route("/userfrozen")
+def userfrozen():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("frozen.txt"):
+        products = []
+        pyfile = open("frozen.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("userfrozen.html", products=products)
+    
+    return render_template("emptydept.html", dept="frozen")
+
+@app.route("/vegetable", methods=["GET", "POST"])
+def vegetable():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("vegetable.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("vegetable.html", error="Please select a unit")
+        else:
+            pyfile = open("vegetable.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("vegetable.html", success="Product added successfully")
+    
+    return render_template("vegetable.html")
+
+@app.route("/uservegetable")
+def uservegetable():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("vegetable.txt"):
+        products = []
+        pyfile = open("vegetable.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("uservegetable.html", products=products)
+    
+    return render_template("emptydept.html", dept="vegetable")
+
+@app.route("/halal", methods=["GET", "POST"])
+def halal():
+    current_user = read_file("current.txt")
+    if current_user != "admin":
+        return redirect("/")
+    
+    if request.method == "POST":
+        product = request.form.get("productname")
+        price = request.form.get("txtprice")
+        unit = request.form.get("selunit")
+        
+        if float(price) < 0.01:
+            return render_template("halal.html", error="Price must be at least 0.01")
+        elif unit == "":
+            return render_template("halal.html", error="Please select a unit")
+        else:
+            pyfile = open("halal.txt", "a")
+            pyfile.write(product + "," + price + "," + unit + "\n")
+            pyfile.close()
+            return render_template("halal.html", success="Product added successfully")
+    
+    return render_template("halal.html")
+
+@app.route("/userhalal")
+def userhalal():
+    current_user = read_file("current.txt")
+    if current_user == "" or current_user == "admin":
+        return redirect("/")
+    
+    if path.exists("halal.txt"):
+        products = []
+        pyfile = open("halal.txt", "r")
+        for line in pyfile:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                products.append({
+                    "name": parts[0],
+                    "price": parts[1],
+                    "unit": parts[2]
+                })
+        pyfile.close()
+        
+        if len(products) > 0:
+            return render_template("userhalal.html", products=products)
+    
+    return render_template("emptydept.html", dept="halal")
+
+
 @app.route("/addtocart", methods=["POST"])
 def addtocart():
     current_user = read_file("current.txt")
@@ -149,7 +431,7 @@ def addtocart():
     pyfile = open(cartfile, "a")
     pyfile.write(product + "," + price + "," + quantity + "\n")
     pyfile.close()
-    
+    #CHECK WHICH DEPT
     return redirect("/userfruit")
 
 @app.route("/cart")
